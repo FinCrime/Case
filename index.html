@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,336 +9,928 @@
 
 <style>
 :root {
---bg:#0b1220; --panel:#141f30; --panel2:#1b2940;
---text:#eef4ff; --muted:#9aabc3; --accent:#64d6a3;
---line:#2a3a52; --red:#ff7f87;
+--bg:#0b1220;
+--panel:#141f30;
+--panel2:#1b2940;
+--text:#eef4ff;
+--muted:#9aabc3;
+--accent:#64d6a3;
+--line:#2a3a52;
+--red:#ff7f87;
 }
-* { box-sizing:border-box; }
+
+* {
+box-sizing:border-box;
+}
+
 body {
-margin:0; background:linear-gradient(160deg,#101b2d,#0b1220 55%);
-color:var(--text); font:15px system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+margin:0;
+background:linear-gradient(160deg,#101b2d,#0b1220 55%);
+color:var(--text);
+font:15px system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
 min-height:100vh;
 }
-.wrap { max-width:760px; margin:auto; padding:20px 16px 40px; }
-header { display:flex; justify-content:space-between; align-items:center; margin:8px 0 20px; }
-.brand { font-weight:800; font-size:22px; }
-.brand span { color:var(--accent); }
-.date { color:var(--muted); font-size:12px; }
-.card { background:rgba(20,31,48,.96); border:1px solid var(--line); border-radius:18px; padding:17px; margin:12px 0; }
-.eyebrow { color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:1.2px; font-weight:700; }
-.big { font-size:54px; line-height:1.05; font-weight:800; margin:8px 0 4px; }
-.sub { color:var(--muted); font-size:13px; }
+
+.wrap {
+max-width:760px;
+margin:auto;
+padding:20px 16px 40px;
+}
+
+header {
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin:8px 0 20px;
+}
+
+.brand {
+font-weight:800;
+font-size:22px;
+}
+
+.brand span {
+color:var(--accent);
+}
+
+.date {
+color:var(--muted);
+font-size:12px;
+}
+
+.card {
+background:rgba(20,31,48,.96);
+border:1px solid var(--line);
+border-radius:18px;
+padding:17px;
+margin:12px 0;
+}
+
+.eyebrow {
+color:var(--muted);
+font-size:11px;
+text-transform:uppercase;
+letter-spacing:1.2px;
+font-weight:700;
+}
+
+.big {
+font-size:54px;
+line-height:1.05;
+font-weight:800;
+margin:8px 0 4px;
+}
+
+.sub {
+color:var(--muted);
+font-size:13px;
+}
+
 .primary {
-width:100%; min-height:112px; border:0; border-radius:19px;
-background:var(--accent); color:#092018; font-size:25px; font-weight:850;
-padding:32px 20px; margin-top:16px; cursor:pointer;
-box-shadow:0 6px 0 #159b78; letter-spacing:.2px;
+width:100%;
+min-height:112px;
+border:0;
+border-radius:19px;
+background:var(--accent);
+color:#092018;
+font-size:25px;
+font-weight:850;
+padding:32px 20px;
+margin-top:16px;
+cursor:pointer;
+box-shadow:0 6px 0 #159b78;
+letter-spacing:.2px;
 }
-.primary:active { transform:translateY(3px); box-shadow:0 3px 0 #159b78; }
+
+.primary:active {
+transform:translateY(3px);
+box-shadow:0 3px 0 #159b78;
+}
+
 .secondary,.ghost,.danger {
-border:1px solid var(--line); border-radius:12px; padding:11px 13px;
-background:var(--panel2); color:var(--text); font-weight:650; cursor:pointer;
+border:1px solid var(--line);
+border-radius:12px;
+padding:11px 13px;
+background:var(--panel2);
+color:var(--text);
+font-weight:650;
+cursor:pointer;
 }
-.danger { color:var(--red); border-color:#75404b; background:#2a1d2a; }
-.row { display:flex; gap:10px; align-items:center; }
-.row>* { flex:1; }
-.grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
-.metric { background:var(--panel2); border-radius:13px; padding:13px; min-width:0; }
-.metric strong { display:block; font-size:24px; margin-top:5px; }
-.metric small { color:var(--muted); }
-.progress { height:9px; background:#27364b; border-radius:20px; overflow:hidden; margin:12px 0 5px; }
-.bar { height:100%; background:var(--accent); width:0%; border-radius:20px; transition:width .2s; }
+
+.danger {
+color:var(--red);
+border-color:#75404b;
+background:#2a1d2a;
+}
+
+.row {
+display:flex;
+gap:10px;
+align-items:center;
+}
+
+.row>* {
+flex:1;
+}
+
+.grid {
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+}
+
+.metric {
+background:var(--panel2);
+border-radius:13px;
+padding:13px;
+min-width:0;
+}
+
+.metric strong {
+display:block;
+font-size:24px;
+margin-top:5px;
+}
+
+.metric small {
+color:var(--muted);
+}
+
+.progress {
+height:9px;
+background:#27364b;
+border-radius:20px;
+overflow:hidden;
+margin:12px 0 5px;
+}
+
+.bar {
+height:100%;
+background:var(--accent);
+width:0%;
+border-radius:20px;
+transition:width .2s;
+}
+
 input,select {
-width:100%; background:#0d1726; border:1px solid var(--line); border-radius:10px;
-color:var(--text); padding:12px; font:inherit; margin-top:6px;
+width:100%;
+background:#0d1726;
+border:1px solid var(--line);
+border-radius:10px;
+color:var(--text);
+padding:12px;
+font:inherit;
+margin-top:6px;
 }
-label { font-size:12px; color:var(--muted); display:block; margin:10px 0; }
-.section-title { font-size:17px; font-weight:750; margin:0 0 12px; }
-.mini { font-size:12px; color:var(--muted); line-height:1.5; }
-.table { width:100%; border-collapse:collapse; font-size:13px; }
-.table td,.table th { padding:9px 5px; border-bottom:1px solid var(--line); text-align:left; }
-.table th { color:var(--muted); font-weight:600; }
-.actions { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
-.actions button { flex:1; }
-.notice { background:#102b2b; border:1px solid #245747; color:#baf3d8; padding:10px 12px; border-radius:11px; font-size:12px; margin-top:10px; }
-.timer-card { border-color:#28624f; background:linear-gradient(145deg,#142b31,#141f30 65%); }
-.timer { font-size:clamp(48px,13vw,68px); font-weight:850; letter-spacing:1px; line-height:1.05; margin:8px 0; font-variant-numeric:tabular-nums; }
-.timer.live { color:var(--accent); }
-.timer.done { color:var(--red); }
-.timer-stats { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:14px; }
-.timer-stat { background:rgba(27,41,64,.9); padding:12px; border-radius:12px; }
-.timer-stat strong { display:block; font-size:25px; margin-top:4px; }
-.timer-stat small { color:var(--muted); }
-.pill { display:inline-block; border:1px solid var(--line); border-radius:20px; padding:4px 9px; font-size:11px; color:var(--muted); }
-footer { text-align:center; color:var(--muted); font-size:11px; padding:18px 8px; }
-@media(min-width:600px) { .big { font-size:64px; } .grid { grid-template-columns:repeat(4,1fr); } }
+
+label {
+font-size:12px;
+color:var(--muted);
+display:block;
+margin:10px 0;
+}
+
+.section-title {
+font-size:17px;
+font-weight:750;
+margin:0 0 12px;
+}
+
+.mini {
+font-size:12px;
+color:var(--muted);
+line-height:1.5;
+}
+
+.table {
+width:100%;
+border-collapse:collapse;
+font-size:13px;
+}
+
+.table td,.table th {
+padding:9px 5px;
+border-bottom:1px solid var(--line);
+text-align:left;
+}
+
+.table th {
+color:var(--muted);
+font-weight:600;
+}
+
+.actions {
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+margin-top:12px;
+}
+
+.actions button {
+flex:1;
+}
+
+.notice {
+background:#102b2b;
+border:1px solid #245747;
+color:#baf3d8;
+padding:10px 12px;
+border-radius:11px;
+font-size:12px;
+margin-top:10px;
+}
+
+.timer-card {
+border-color:#28624f;
+background:linear-gradient(145deg,#142b31,#141f30 65%);
+}
+
+.timer {
+font-size:clamp(48px,13vw,68px);
+font-weight:850;
+letter-spacing:1px;
+line-height:1.05;
+margin:8px 0;
+font-variant-numeric:tabular-nums;
+}
+
+.timer.live {
+color:var(--accent);
+}
+
+.timer.done {
+color:var(--red);
+}
+
+.timer-stats {
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+margin-top:14px;
+}
+
+.timer-stat {
+background:rgba(27,41,64,.9);
+padding:12px;
+border-radius:12px;
+}
+
+.timer-stat strong {
+display:block;
+font-size:25px;
+margin-top:4px;
+}
+
+.timer-stat small {
+color:var(--muted);
+}
+
+.pill {
+display:inline-block;
+border:1px solid var(--line);
+border-radius:20px;
+padding:4px 9px;
+font-size:11px;
+color:var(--muted);
+}
+
+footer {
+text-align:center;
+color:var(--muted);
+font-size:11px;
+padding:18px 8px;
+}
+
+@media(min-width:600px) {
+.big {
+font-size:64px;
+}
+.grid {
+grid-template-columns:repeat(4,1fr);
+}
+}
 </style>
 </head>
+
 <body>
 <div class="wrap">
+
 <header>
 <div class="brand">Case<span>Track</span></div>
 <div class="date" id="today"></div>
 </header>
 
+<!-- 1. HOURLY COUNTDOWN -->
+
+<section class="card timer-card">
+
+<div class="row" style="align-items:center">
+<div style="flex:1">
+<div class="eyebrow">Hourly countdown</div>
+<div class="sub" id="hourStatus">
+Start your shift to begin the first 60-minute cycle.
+</div>
+</div>
+
+<span class="pill" id="hourBadge">NOT STARTED</span>
+</div>
+
+<div class="timer" id="countdown">60:00</div>
+
+<div class="progress">
+<div class="bar" id="hourBar"></div>
+</div>
+
+<div class="timer-stats">
+
+<div class="timer-stat">
+<small>Cases this hour</small>
+<strong id="hourCases">0</strong>
+</div>
+
+<div class="timer-stat">
+<small>Hourly target</small>
+<strong id="hourTarget">40</strong>
+</div>
+
+</div>
+
+<div class="mini" id="hourHint" style="margin-top:10px">
+Your hourly counter resets automatically when each 60-minute cycle ends. Daily cases are never reset by the hourly timer.
+</div>
+
+</section>
+
+<!-- 2. HR CASE COUNTER -->
+
 <section class="card">
-<div class="eyebrow">Completed cases today</div>
+
+<div class="eyebrow">HR CASE</div>
+
 <div class="big" id="caseCount">0</div>
-<div class="sub">Tap once after a case is successfully submitted.</div>
-<button class="primary" id="addCase">＋ CASE COMPLETED</button>
+
+<div class="sub">
+Tap once after a case is successfully submitted.
+</div>
+
+<button class="primary" id="addCase">
+＋ CASE COMPLETED
+</button>
+
 <div class="actions">
 <button class="secondary" id="undo">Undo last</button>
 <button class="ghost" id="shiftToggle">Start shift</button>
 </div>
-<div class="notice">Only counts your button taps. It does not connect to or read your workplace screening system.</div>
+
+<div class="notice">
+Only counts your button taps. It does not connect to or read your workplace screening system.
+</div>
+
 </section>
 
-<section class="card timer-card">
-<div class="row" style="align-items:center">
-<div style="flex:1">
-<div class="eyebrow">Hourly countdown</div>
-<div class="sub" id="hourStatus">Start your shift to begin the first 60-minute cycle.</div>
-</div>
-<span class="pill" id="hourBadge">NOT STARTED</span>
-</div>
-<div class="timer" id="countdown">60:00</div>
-<div class="progress"><div class="bar" id="hourBar"></div></div>
-<div class="timer-stats">
-<div class="timer-stat"><small>Cases this hour</small><strong id="hourCases">0</strong></div>
-<div class="timer-stat"><small>Hourly target</small><strong id="hourTarget">40</strong></div>
-</div>
-<div class="mini" id="hourHint" style="margin-top:10px">Your hourly counter resets automatically when each 60-minute cycle ends. Daily cases are never reset by the hourly timer.</div>
-</section>
+<!-- 3. LIVE PERFORMANCE -->
 
 <section class="card">
+
 <div class="section-title">Live performance</div>
+
 <div class="grid">
-<div class="metric"><small>Cases / hour</small><strong id="rate">0.0</strong></div>
-<div class="metric"><small>Average handling time</small><strong id="aht">—</strong></div>
-<div class="metric"><small>Shift duration</small><strong id="duration">0m</strong></div>
-<div class="metric"><small>Target progress</small><strong id="targetPct">0%</strong></div>
+
+<div class="metric">
+<small>Cases / hour</small>
+<strong id="rate">0.0</strong>
 </div>
+
+<div class="metric">
+<small>Average handling time</small>
+<strong id="aht">—</strong>
+</div>
+
+<div class="metric">
+<small>Shift duration</small>
+<strong id="duration">0m</strong>
+</div>
+
+<div class="metric">
+<small>Target progress</small>
+<strong id="targetPct">0%</strong>
+</div>
+
+</div>
+
 <div class="row" style="margin-top:14px">
-<label>Hourly target<input id="target" type="number" min="1" value="40"></label>
-<label>Shift start (optional)<input id="startTime" type="time"></label>
+
+<label>
+Hourly target
+<input id="target" type="number" min="1" value="40">
+</label>
+
+<label>
+Shift start (optional)
+<input id="startTime" type="time">
+</label>
+
 </div>
-<div class="progress"><div class="bar" id="targetBar"></div></div>
-<div class="mini" id="targetText">0 of 40 cases in the current hourly cycle</div>
+
+<div class="progress">
+<div class="bar" id="targetBar"></div>
+</div>
+
+<div class="mini" id="targetText">
+0 of 40 cases in the current hourly cycle
+</div>
+
 </section>
 
+<!-- 4. HOURLY BREAKDOWN -->
+
 <section class="card">
+
 <div class="section-title">Hourly breakdown</div>
-<div class="mini" style="margin-bottom:8px">Each row represents one 60-minute block measured from the moment you started your shift.</div>
-<div id="hourly"><div class="mini">No shift hours recorded yet.</div></div>
+
+<div class="mini" style="margin-bottom:8px">
+Each row represents one 60-minute block measured from the moment you started your shift.
+</div>
+
+<div id="hourly">
+<div class="mini">No shift hours recorded yet.</div>
+</div>
+
 </section>
 
+<!-- 5. QC SCORE CALCULATOR -->
+
 <section class="card">
+
 <div class="section-title">QC score calculator</div>
-<div class="mini">Clean = 100%, one minor = 37%, two minors = 67%, 3+ errors or OD error = 0%.</div>
+
+<div class="mini">
+Clean = 100%, one minor = 37%, two minors = 67%, 3+ errors or OD error = 0%.
+</div>
+
 <div class="grid">
-<label>Clean cases<input id="qcClean" type="number" min="0" value="0"></label>
-<label>One minor error<input id="qcOne" type="number" min="0" value="0"></label>
-<label>Two minor errors<input id="qcTwo" type="number" min="0" value="0"></label>
-<label>3+ errors<input id="qcThree" type="number" min="0" value="0"></label>
-<label>OD errors<input id="qcOd" type="number" min="0" value="0"></label>
+
+<label>
+Clean cases
+<input id="qcClean" type="number" min="0" value="0">
+</label>
+
+<label>
+One minor error
+<input id="qcOne" type="number" min="0" value="0">
+</label>
+
+<label>
+Two minor errors
+<input id="qcTwo" type="number" min="0" value="0">
+</label>
+
+<label>
+3+ errors
+<input id="qcThree" type="number" min="0" value="0">
+</label>
+
+<label>
+OD errors
+<input id="qcOd" type="number" min="0" value="0">
+</label>
+
 </div>
+
 <div class="row" style="align-items:end">
-<div><div class="eyebrow">Calculated QC score</div><div class="big" style="font-size:38px" id="qcScore">—</div><div class="mini" id="qcCount">0 QC cases entered</div></div>
+
+<div>
+<div class="eyebrow">Calculated QC score</div>
+<div class="big" style="font-size:38px" id="qcScore">—</div>
+<div class="mini" id="qcCount">0 QC cases entered</div>
+</div>
+
 <button class="secondary" id="resetQc">Reset QC</button>
+
 </div>
+
 </section>
 
+<!-- 6. END OF DAY RECORD -->
+
 <section class="card">
+
 <div class="section-title">End-of-day record</div>
-<div class="mini">Save your daily case count and QC performance at the end of your shift.</div>
-<div class="actions"><button class="primary" id="saveEod" style="margin-top:0">SAVE TODAY'S EOD COUNT</button></div>
-<div class="notice" id="eodStatus">Today's count has not been saved yet.</div>
-<div style="margin-top:16px" class="section-title">Daily history</div>
-<div id="history"><div class="mini">No EOD records saved yet.</div></div>
+
+<div class="mini">
+Save your daily case count and QC performance at the end of your shift.
+</div>
+
+<div class="actions">
+<button class="primary" id="saveEod" style="margin-top:0">
+SAVE TODAY'S EOD COUNT
+</button>
+</div>
+
+<div class="notice" id="eodStatus">
+Today's count has not been saved yet.
+</div>
+
+<div style="margin-top:16px" class="section-title">
+Daily history
+</div>
+
+<div id="history">
+<div class="mini">No EOD records saved yet.</div>
+</div>
+
 </section>
 
+<!-- 7. DATA & PRIVACY -->
+
 <section class="card">
+
 <div class="section-title">Data & privacy</div>
-<div class="mini">Your records are stored in this browser on this phone. No customer names, case IDs or confidential screening information are collected. Clearing browser data may erase your records.</div>
-<div class="actions">
-<button class="secondary" id="export">Export history CSV</button>
-<button class="danger" id="resetDay">Reset today's cases</button>
+
+<div class="mini">
+Your records are stored in this browser on this phone. No customer names, case IDs or confidential screening information are collected. Clearing browser data may erase your records.
 </div>
+
+<div class="actions">
+
+<button class="secondary" id="export">
+Export history CSV
+</button>
+
+<button class="danger" id="resetDay">
+Reset today's cases
+</button>
+
+</div>
+
 </section>
-<footer>CaseTrack · Personal productivity tracker</footer>
+
+<footer>
+CaseTrack · Personal productivity tracker
+</footer>
+
 </div>
 
 <script>
 const $ = id => document.getElementById(id);
+
 const HOUR = 60 * 60 * 1000;
 
 const dayKey = () => {
   const d = new Date();
-  return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');
+
+  return [
+    d.getFullYear(),
+    String(d.getMonth()+1).padStart(2,'0'),
+    String(d.getDate()).padStart(2,'0')
+  ].join('-');
 };
 
-let state = {date:dayKey(),events:[],shiftStart:null,shiftEnd:null};
+let state = {
+  date:dayKey(),
+  events:[],
+  shiftStart:null,
+  shiftEnd:null
+};
+
 const storageKey = 'casetrack_v1_' + dayKey();
 const historyKey = 'casetrack_eod_history_v1';
 const prefsKey = 'casetrack_prefs_v1';
+
 let history = {};
 
 function loadHistory() {
-  try { history = JSON.parse(localStorage.getItem(historyKey)||'{}'); }
-  catch(e) { history = {}; }
+  try {
+    history = JSON.parse(localStorage.getItem(historyKey)||'{}');
+  } catch(e) {
+    history = {};
+  }
 }
+
 function saveHistory() {
   localStorage.setItem(historyKey,JSON.stringify(history));
   renderHistory();
 }
+
 function load() {
   try {
     const s = localStorage.getItem(storageKey);
+
     if(s) {
       const parsed = JSON.parse(s);
-      if(parsed && parsed.date === dayKey()) state = parsed;
+
+      if(parsed && parsed.date === dayKey()) {
+        state = parsed;
+      }
     }
   } catch(e) {}
 }
+
 function save() {
   localStorage.setItem(storageKey,JSON.stringify(state));
   render();
 }
+
 function fmtDuration(ms) {
   if(!Number.isFinite(ms)||ms<0) return '—';
+
   const m = Math.round(ms/60000);
-  return m>=60 ? `${Math.floor(m/60)}h ${m%60}m` : `${m}m`;
+
+  return m>=60
+    ? `${Math.floor(m/60)}h ${m%60}m`
+    : `${m}m`;
 }
+
 function fmtClock(ms) {
-  return new Date(ms).toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});
+  return new Date(ms).toLocaleTimeString([], {
+    hour:'numeric',
+    minute:'2-digit'
+  });
 }
+
 function fmtCountdown(ms) {
   const total = Math.max(0,Math.ceil(ms/1000));
-  return String(Math.floor(total/60)).padStart(2,'0')+':'+String(total%60).padStart(2,'0');
+
+  return String(Math.floor(total/60)).padStart(2,'0')
+    +':'+
+    String(total%60).padStart(2,'0');
 }
+
 function getTarget() {
   return Math.max(1,Number($('target').value)||40);
 }
+
 function getShiftWindow(now=Date.now()) {
   if(!state.shiftStart) return null;
-  const effectiveNow = state.shiftEnd ? Math.min(now,state.shiftEnd) : now;
+
+  const effectiveNow = state.shiftEnd
+    ? Math.min(now,state.shiftEnd)
+    : now;
+
   const elapsed = Math.max(0,effectiveNow-state.shiftStart);
   const index = Math.floor(elapsed/HOUR);
   const cycleStart = state.shiftStart + index*HOUR;
   const cycleEnd = cycleStart + HOUR;
-  return {effectiveNow,index,cycleStart,cycleEnd,remaining:Math.max(0,cycleEnd-effectiveNow)};
+
+  return {
+    effectiveNow,
+    index,
+    cycleStart,
+    cycleEnd,
+    remaining:Math.max(0,cycleEnd-effectiveNow)
+  };
 }
+
 function getCycleRows(now=Date.now()) {
   if(!state.shiftStart) return [];
+
   const endTime = state.shiftEnd || now;
   const totalElapsed = Math.max(0,endTime-state.shiftStart);
   const lastIndex = Math.floor(totalElapsed/HOUR);
   const rows = [];
+
   for(let i=0;i<=lastIndex;i++) {
     const start = state.shiftStart+i*HOUR;
     const end = Math.min(start+HOUR,endTime);
+
     if(end < start) continue;
-    const count = state.events.filter(e=>e.ts>=start && e.ts<end).length;
+
+    const count = state.events.filter(
+      e=>e.ts>=start && e.ts<end
+    ).length;
+
     const isCurrent = !state.shiftEnd && i===lastIndex;
     const complete = endTime>=start+HOUR;
-    rows.push({i,start,end,count,isCurrent,complete});
+
+    rows.push({
+      i,
+      start,
+      end,
+      count,
+      isCurrent,
+      complete
+    });
   }
+
   return rows.reverse();
 }
+
 function getQcSnapshot() {
-  const vals = ['qcClean','qcOne','qcTwo','qcThree','qcOd'].map(id=>Math.max(0,Number($(id).value)||0));
+  const vals = [
+    'qcClean',
+    'qcOne',
+    'qcTwo',
+    'qcThree',
+    'qcOd'
+  ].map(id=>Math.max(0,Number($(id).value)||0));
+
   const [clean,oneMinor,twoMinor,threePlus,od] = vals;
+
   const total = vals.reduce((a,b)=>a+b,0);
-  return {clean,oneMinor,twoMinor,threePlus,od,total,score:total?(clean*100+oneMinor*37+twoMinor*67)/total:null};
+
+  return {
+    clean,
+    oneMinor,
+    twoMinor,
+    threePlus,
+    od,
+    total,
+    score:total
+      ?(clean*100+oneMinor*37+twoMinor*67)/total
+      :null
+  };
 }
+
 function calcQc() {
   const qc = getQcSnapshot();
-  $('qcScore').textContent = qc.score===null?'—':qc.score.toFixed(2)+'%';
-  $('qcCount').textContent = `${qc.total} QC cases entered`;
+
+  $('qcScore').textContent = qc.score===null
+    ?'—'
+    :qc.score.toFixed(2)+'%';
+
+  $('qcCount').textContent =
+    `${qc.total} QC cases entered`;
 }
+
 function renderHistory() {
   const dates = Object.keys(history).sort().reverse();
+
   if(!dates.length) {
-    $('history').innerHTML='<div class="mini">No EOD records saved yet.</div>';
+    $('history').innerHTML =
+      '<div class="mini">No EOD records saved yet.</div>';
+
     return;
   }
-  $('history').innerHTML='<div style="overflow-x:auto"><table class="table"><thead><tr><th>Date</th><th>Cases</th><th>QC</th><th>Shift</th></tr></thead><tbody>'+
-    dates.map(date=>{const r=history[date];return `<tr><td>${date}</td><td>${r.cases}</td><td>${r.qcScore===null?'—':r.qcScore.toFixed(2)+'%'}</td><td>${r.shiftDuration||'—'}</td></tr>`;}).join('')+
+
+  $('history').innerHTML =
+    '<div style="overflow-x:auto"><table class="table"><thead><tr><th>Date</th><th>Cases</th><th>QC</th><th>Shift</th></tr></thead><tbody>'+
+
+    dates.map(date=>{
+      const r=history[date];
+
+      return `<tr>
+        <td>${date}</td>
+        <td>${r.cases}</td>
+        <td>${r.qcScore===null?'—':r.qcScore.toFixed(2)+'%'}</td>
+        <td>${r.shiftDuration||'—'}</td>
+      </tr>`;
+    }).join('')+
+
     '</tbody></table></div>';
 }
+
 function renderHourly(now) {
   const window = getShiftWindow(now);
   const target = getTarget();
+
   if(!window) {
     $('countdown').textContent='60:00';
     $('countdown').className='timer';
+
     $('hourCases').textContent='0';
     $('hourTarget').textContent=target;
     $('hourBadge').textContent='NOT STARTED';
-    $('hourStatus').textContent='Start your shift to begin the first 60-minute cycle.';
+
+    $('hourStatus').textContent =
+      'Start your shift to begin the first 60-minute cycle.';
+
     $('hourBar').style.width='0%';
-    $('hourly').innerHTML='<div class="mini">No shift hours recorded yet. Start shift to begin hourly tracking.</div>';
+
+    $('hourly').innerHTML =
+      '<div class="mini">No shift hours recorded yet. Start shift to begin hourly tracking.</div>';
+
     return;
   }
+
   if(state.shiftEnd) {
     $('countdown').textContent='STOPPED';
     $('countdown').className='timer done';
+
     $('hourBadge').textContent='SHIFT ENDED';
-    $('hourStatus').textContent='The hourly countdown stopped when you ended your shift.';
+
+    $('hourStatus').textContent =
+      'The hourly countdown stopped when you ended your shift.';
+
     $('hourCases').textContent='—';
     $('hourTarget').textContent=target;
     $('hourBar').style.width='0%';
+
   } else {
-    const currentCount = state.events.filter(e=>e.ts>=window.cycleStart && e.ts<now).length;
+
+    const currentCount = state.events.filter(
+      e=>e.ts>=window.cycleStart && e.ts<now
+    ).length;
+
     const progress = Math.min(100,currentCount/target*100);
+
     $('countdown').textContent=fmtCountdown(window.remaining);
     $('countdown').className='timer live';
-    $('hourBadge').textContent=`HOUR ${window.index+1} / LIVE`;
-    $('hourStatus').textContent=`Current cycle: ${fmtClock(window.cycleStart)} – ${fmtClock(window.cycleEnd)}`;
+
+    $('hourBadge').textContent=
+      `HOUR ${window.index+1} / LIVE`;
+
+    $('hourStatus').textContent=
+      `Current cycle: ${fmtClock(window.cycleStart)} – ${fmtClock(window.cycleEnd)}`;
+
     $('hourCases').textContent=currentCount;
     $('hourTarget').textContent=target;
     $('hourBar').style.width=progress+'%';
   }
 
   const rows=getCycleRows(now);
+
   $('hourly').innerHTML=rows.length
+
     ? '<div style="overflow-x:auto"><table class="table"><thead><tr><th>Shift hour</th><th>Time</th><th>Cases</th><th>Result</th></tr></thead><tbody>'+
+
       rows.map(r=>{
-        const label=r.isCurrent?'LIVE':(r.complete?'COMPLETE':'PARTIAL');
-        const result=r.count>=target?'Target met':`${Math.round(r.count/target*100)}%`;
-        return `<tr><td>Hour ${r.i+1}</td><td>${fmtClock(r.start)} – ${fmtClock(r.end)}</td><td>${r.count}</td><td>${label==='LIVE'?'LIVE · '+result:result}</td></tr>`;
-      }).join('')+'</tbody></table></div>'
+        const label=r.isCurrent
+          ?'LIVE'
+          :(r.complete?'COMPLETE':'PARTIAL');
+
+        const result=r.count>=target
+          ?'Target met'
+          :`${Math.round(r.count/target*100)}%`;
+
+        return `<tr>
+          <td>Hour ${r.i+1}</td>
+          <td>${fmtClock(r.start)} – ${fmtClock(r.end)}</td>
+          <td>${r.count}</td>
+          <td>${label==='LIVE'?'LIVE · '+result:result}</td>
+        </tr>`;
+      }).join('')+
+
+      '</tbody></table></div>'
+
     : '<div class="mini">No shift hours recorded yet.</div>';
 }
+
 function render() {
   const now=Date.now();
-  $('today').textContent=new Date().toLocaleDateString([],{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+
+  $('today').textContent=new Date().toLocaleDateString([],{
+    weekday:'short',
+    day:'numeric',
+    month:'short',
+    year:'numeric'
+  });
+
   $('caseCount').textContent=state.events.length;
 
   const start=state.shiftStart || (state.events[0]?.ts ?? now);
-  const effectiveNow=state.shiftEnd?Math.min(now,state.shiftEnd):now;
+
+  const effectiveNow=state.shiftEnd
+    ?Math.min(now,state.shiftEnd)
+    :now;
+
   const elapsed=Math.max(0,effectiveNow-start);
-  const rate=elapsed>0?state.events.length/(elapsed/3600000):0;
+
+  const rate=elapsed>0
+    ?state.events.length/(elapsed/3600000)
+    :0;
+
   $('rate').textContent=rate.toFixed(1);
 
-  const gaps=state.events.slice(1).map((e,i)=>e.ts-state.events[i].ts).filter(x=>x>0);
-  $('aht').textContent=gaps.length?fmtDuration(gaps.reduce((a,b)=>a+b,0)/gaps.length):'—';
-  $('duration').textContent=state.shiftStart?fmtDuration(effectiveNow-state.shiftStart):'0m';
+  const gaps=state.events.slice(1)
+    .map((e,i)=>e.ts-state.events[i].ts)
+    .filter(x=>x>0);
+
+  $('aht').textContent=gaps.length
+    ?fmtDuration(gaps.reduce((a,b)=>a+b,0)/gaps.length)
+    :'—';
+
+  $('duration').textContent=state.shiftStart
+    ?fmtDuration(effectiveNow-state.shiftStart)
+    :'0m';
 
   const target=getTarget();
   const window=getShiftWindow(now);
+
   const thisHour=window && !state.shiftEnd
-    ?state.events.filter(e=>e.ts>=window.cycleStart && e.ts<now).length
+    ?state.events.filter(
+      e=>e.ts>=window.cycleStart && e.ts<now
+    ).length
     :0;
+
   const pct=Math.min(100,thisHour/target*100);
+
   $('targetPct').textContent=Math.round(pct)+'%';
   $('targetBar').style.width=pct+'%';
-  $('targetText').textContent=`${thisHour} of ${target} cases in the current hourly cycle`;
 
-  $('shiftToggle').textContent=state.shiftStart&&!state.shiftEnd?'End shift':state.shiftEnd?'Start new shift':'Start shift';
+  $('targetText').textContent=
+    `${thisHour} of ${target} cases in the current hourly cycle`;
+
+  $('shiftToggle').textContent=
+    state.shiftStart&&!state.shiftEnd
+      ?'End shift'
+      :state.shiftEnd
+        ?'Start new shift'
+        :'Start shift';
+
   $('undo').disabled=!state.events.length;
 
   const saved=history[state.date];
+
   $('eodStatus').textContent=saved
     ?`EOD saved for ${state.date}: ${saved.cases} cases. Saving again updates this date's record.`
     :"Today's count has not been saved as an EOD record yet.";
@@ -346,39 +939,103 @@ function render() {
   calcQc();
   renderHistory();
 }
+
 function saveEod() {
   const qc=getQcSnapshot();
-  const duration=state.shiftStart?fmtDuration((state.shiftEnd||Date.now())-state.shiftStart):'—';
-  const hourly=getCycleRows(state.shiftEnd||Date.now()).map(r=>({
-    hour:r.i+1,start:fmtClock(r.start),end:fmtClock(r.end),cases:r.count,complete:r.complete
+
+  const duration=state.shiftStart
+    ?fmtDuration((state.shiftEnd||Date.now())-state.shiftStart)
+    :'—';
+
+  const hourly=getCycleRows(
+    state.shiftEnd||Date.now()
+  ).map(r=>({
+    hour:r.i+1,
+    start:fmtClock(r.start),
+    end:fmtClock(r.end),
+    cases:r.count,
+    complete:r.complete
   })).reverse();
+
   history[state.date]={
-    date:state.date,cases:state.events.length,shiftStart:state.shiftStart,shiftEnd:state.shiftEnd,
-    shiftDuration:duration,qcClean:qc.clean,qcOneMinor:qc.oneMinor,qcTwoMinor:qc.twoMinor,
-    qcThreePlus:qc.threePlus,qcOd:qc.od,qcTotal:qc.total,qcScore:qc.score,hourly,savedAt:Date.now()
+    date:state.date,
+    cases:state.events.length,
+    shiftStart:state.shiftStart,
+    shiftEnd:state.shiftEnd,
+    shiftDuration:duration,
+    qcClean:qc.clean,
+    qcOneMinor:qc.oneMinor,
+    qcTwoMinor:qc.twoMinor,
+    qcThreePlus:qc.threePlus,
+    qcOd:qc.od,
+    qcTotal:qc.total,
+    qcScore:qc.score,
+    hourly,
+    savedAt:Date.now()
   };
+
   saveHistory();
-  $('eodStatus').textContent=`EOD saved for ${state.date}: ${state.events.length} cases.`;
+
+  $('eodStatus').textContent=
+    `EOD saved for ${state.date}: ${state.events.length} cases.`;
 }
+
 function loadPrefs() {
   try {
     const p=JSON.parse(localStorage.getItem(prefsKey)||'{}');
+
     if(p.target) $('target').value=p.target;
-    ['qcClean','qcOne','qcTwo','qcThree','qcOd'].forEach(id=>{if(p[id]!==undefined) $(id).value=p[id];});
+
+    [
+      'qcClean',
+      'qcOne',
+      'qcTwo',
+      'qcThree',
+      'qcOd'
+    ].forEach(id=>{
+      if(p[id]!==undefined) $(id).value=p[id];
+    });
+
   } catch(e) {}
 }
+
 function savePrefs() {
-  const p={target:$('target').value};
-  ['qcClean','qcOne','qcTwo','qcThree','qcOd'].forEach(id=>p[id]=$(id).value);
+  const p={
+    target:$('target').value
+  };
+
+  [
+    'qcClean',
+    'qcOne',
+    'qcTwo',
+    'qcThree',
+    'qcOd'
+  ].forEach(id=>p[id]=$(id).value);
+
   localStorage.setItem(prefsKey,JSON.stringify(p));
 }
 
+/* CASE COMPLETED */
+
 $('addCase').addEventListener('click',()=>{
   state.events.push({ts:Date.now()});
+
   save();
-  if(navigator.vibrate) navigator.vibrate(35);
+
+  if(navigator.vibrate) {
+    navigator.vibrate(35);
+  }
 });
-$('undo').addEventListener('click',()=>{state.events.pop();save();});
+
+/* UNDO LAST CASE */
+
+$('undo').addEventListener('click',()=>{
+  state.events.pop();
+  save();
+});
+
+/* START / END SHIFT */
+
 $('shiftToggle').addEventListener('click',()=>{
   if(!state.shiftStart || state.shiftEnd) {
     state.shiftStart=Date.now();
@@ -386,43 +1043,144 @@ $('shiftToggle').addEventListener('click',()=>{
   } else {
     state.shiftEnd=Date.now();
   }
+
   save();
 });
-$('target').addEventListener('input',()=>{savePrefs();render();});
-['qcClean','qcOne','qcTwo','qcThree','qcOd'].forEach(id=>$(id).addEventListener('input',()=>{savePrefs();calcQc();}));
-$('resetQc').addEventListener('click',()=>{
-  ['qcClean','qcOne','qcTwo','qcThree','qcOd'].forEach(id=>$(id).value=0);
-  savePrefs();calcQc();
+
+/* HOURLY TARGET */
+
+$('target').addEventListener('input',()=>{
+  savePrefs();
+  render();
 });
+
+/* QC INPUTS */
+
+[
+  'qcClean',
+  'qcOne',
+  'qcTwo',
+  'qcThree',
+  'qcOd'
+].forEach(id=>{
+  $(id).addEventListener('input',()=>{
+    savePrefs();
+    calcQc();
+  });
+});
+
+/* RESET QC */
+
+$('resetQc').addEventListener('click',()=>{
+  [
+    'qcClean',
+    'qcOne',
+    'qcTwo',
+    'qcThree',
+    'qcOd'
+  ].forEach(id=>$(id).value=0);
+
+  savePrefs();
+  calcQc();
+});
+
+/* RESET DAILY CASES */
+
 $('resetDay').addEventListener('click',()=>{
   if(confirm("Delete today's case timestamps and shift times?")) {
-    state={date:dayKey(),events:[],shiftStart:null,shiftEnd:null};
+
+    state={
+      date:dayKey(),
+      events:[],
+      shiftStart:null,
+      shiftEnd:null
+    };
+
     save();
   }
 });
+
+/* SAVE EOD */
+
 $('saveEod').addEventListener('click',()=>{
-  if(confirm(`Save ${state.events.length} completed cases as today's EOD record?`)) saveEod();
+  if(confirm(
+    `Save ${state.events.length} completed cases as today's EOD record?`
+  )) {
+    saveEod();
+  }
 });
+
+/* EXPORT CSV */
+
 $('export').addEventListener('click',()=>{
-  const rows=[['Date','Cases','Shift duration','Clean QC','One minor','Two minors','3+ errors','OD errors','QC cases','QC score','Hourly breakdown','Saved at']];
+  const rows=[[
+    'Date',
+    'Cases',
+    'Shift duration',
+    'Clean QC',
+    'One minor',
+    'Two minors',
+    '3+ errors',
+    'OD errors',
+    'QC cases',
+    'QC score',
+    'Hourly breakdown',
+    'Saved at'
+  ]];
+
   Object.keys(history).sort().forEach(date=>{
     const r=history[date];
-    const hourly=(r.hourly||[]).map(h=>`Hour ${h.hour}: ${h.cases} cases (${h.start}-${h.end})`).join(' | ');
-    rows.push([r.date,r.cases,r.shiftDuration,r.qcClean,r.qcOneMinor,r.qcTwoMinor,r.qcThreePlus,r.qcOd,r.qcTotal,r.qcScore===null?'':r.qcScore,hourly,new Date(r.savedAt).toISOString()]);
+
+    const hourly=(r.hourly||[])
+      .map(h=>`Hour ${h.hour}: ${h.cases} cases (${h.start}-${h.end})`)
+      .join(' | ');
+
+    rows.push([
+      r.date,
+      r.cases,
+      r.shiftDuration,
+      r.qcClean,
+      r.qcOneMinor,
+      r.qcTwoMinor,
+      r.qcThreePlus,
+      r.qcOd,
+      r.qcTotal,
+      r.qcScore===null?'':r.qcScore,
+      hourly,
+      new Date(r.savedAt).toISOString()
+    ]);
   });
-  const csv=rows.map(r=>r.map(v=>'"'+String(v??'').replaceAll('"','""')+'"').join(',')).join('\n');
+
+  const csv=rows.map(r=>
+    r.map(v=>
+      '"'+String(v??'').replaceAll('"','""')+'"'
+    ).join(',')
+  ).join('\n');
+
   const blob=new Blob([csv],{type:'text/csv'});
-  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='casetrack-daily-history.csv'; a.click();
+
+  const a=document.createElement('a');
+
+  a.href=URL.createObjectURL(blob);
+  a.download='casetrack-daily-history.csv';
+  a.click();
+
   URL.revokeObjectURL(a.href);
 });
+
+/* INITIALIZE */
 
 load();
 loadHistory();
 loadPrefs();
 render();
-// Refresh the visible countdown every second. Timer math uses timestamps,
-// so it remains accurate after tab switching, screen locking, or refresh.
+
+// Refresh the visible countdown every second.
+// Timer math uses timestamps, so it remains accurate
+// after tab switching, screen locking, or refresh.
+
 setInterval(render,1000);
+
 </script>
 </body>
 </html>
