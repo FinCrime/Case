@@ -252,6 +252,13 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:18px 8px}
 
 <script>
 'use strict';
+window.addEventListener('error', function(ev){
+  var b = document.getElementById('fatal');
+  if(!b){ b = document.createElement('div'); b.id = 'fatal';
+    b.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:99;background:#5a1f2a;color:#fff;padding:12px 16px;font:13px system-ui';
+    document.body.appendChild(b); }
+  b.textContent = 'CaseTrack error: ' + ev.message + ' — please screenshot this and send it.';
+});
 const $ = id => document.getElementById(id);
 const HOUR = 3600000, MIN = 60000;
 
@@ -295,9 +302,9 @@ const newSession = () => ({
   qc: { clean:0, one:0, two:0, three:0, od:0 }
 });
 
-let session = loadSession();
-let history = store.get(K.history, {});
 let prefs = Object.assign({ target:40, shiftHours:8, sound:false, wake:false }, store.get(K.prefs, {}));
+let history = store.get(K.history, {});
+let session = loadSession();
 let lastHourIdx = null;
 let lastTap = 0;
 
@@ -654,7 +661,8 @@ $('saveEod').addEventListener('click', () => {
 });
 
 $('history').addEventListener('click', e => {
-  const d = e.target.closest('[data-del]')?.dataset.del;
+  const btn = e.target.closest ? e.target.closest('[data-del]') : null;
+  const d = btn ? btn.dataset.del : null;
   if(d && confirm(`Delete the saved record for ${d}?`)){
     delete history[d]; store.set(K.history, history); render();
   }
@@ -675,11 +683,11 @@ $('export').addEventListener('click', () => {
   Object.keys(history).sort().forEach(d => {
     const r = history[d];
     const hourly = (r.hourly || []).map(h => `Hour ${h.hour}: ${h.cases} (${h.start}-${h.end})`).join(' | ');
-    rows.push([r.date, r.cases, r.rate == null ? '' : Number(r.rate).toFixed(2), r.shiftDuration, r.breakMinutes ?? '',
+    rows.push([r.date, r.cases, r.rate == null ? '' : Number(r.rate).toFixed(2), r.shiftDuration, r.breakMinutes == null ? '' : r.breakMinutes,
       r.qcClean, r.qcOneMinor, r.qcTwoMinor, r.qcThreePlus, r.qcOd, r.qcTotal,
       r.qcScore == null ? '' : Number(r.qcScore).toFixed(2), hourly, new Date(r.savedAt).toISOString()]);
   });
-  const csv = rows.map(r => r.map(v => '"' + String(v ?? '').replaceAll('"','""') + '"').join(',')).join('\n');
+  const csv = rows.map(r => r.map(v => '"' + String(v == null ? '' : v).replace(/"/g,'""') + '"').join(',')).join('\n');
   download('casetrack-daily-history.csv', '\uFEFF' + csv, 'text/csv');
 });
 
